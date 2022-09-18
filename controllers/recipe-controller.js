@@ -39,15 +39,24 @@ router.get("/:id", async (req, res) => {
       }
 });
 
-// Recipe Delete Route
-router.delete("/:id", async (req, res) => {
-	res.status(200).json({message: "recipe delete route: " + req.params.id })
-});
-
 // Recipe Update Route
 router.put("/:id/edit", async (req, res) => {
-	console.log(req.body)
-	res.status(200).json({message: "recipe update route: " + req.params.id })
-});
+    try {
+      res.json(
+        await Recipe.findByIdAndUpdate(req.params.id, req.body, {new:true})
+      );
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  });
+  
+  // Recipe Delete Route
+  router.delete("/:id", async (req, res) => {
+    try {
+      res.json(await Recipe.findByIdAndRemove(req.params.id));
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  });
 
 module.exports = router
