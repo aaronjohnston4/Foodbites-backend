@@ -8,6 +8,11 @@
 const recipeController = require('./controllers/recipe-controller')
 
 
+//connecting cors and morgan
+const cors = require("cors")
+const morgan = require("morgan")
+
+
 // initialize .env variables
 require("dotenv").config();
 require('./config/db.connection')
@@ -24,9 +29,9 @@ const app = express();
 ///////////////////////////////
 // MIDDLEWARE
 ////////////////////////////////
-app.use(express.json()); // parse json bodies - this will run before our request accesses the people router
-
-// all requests for endpoints that begin with '/people'
+app.use(express.json()); 
+app.use(cors()); 
+app.use(morgan("dev")); 
 app.use('/recipes', recipeController)
 
 ///////////////////////////////
