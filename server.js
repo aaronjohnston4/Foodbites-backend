@@ -2,6 +2,12 @@
 // DEPENDENCIES
 ////////////////////////////////
 
+// ... the rest of our other dependencies
+
+// import recipe router
+const recipeController = require('./controllers/recipe-controller')
+
+
 // initialize .env variables
 require("dotenv").config();
 require('./config/db.connection')
@@ -13,6 +19,15 @@ const express = require("express");
 
 // create application object
 const app = express();
+
+
+///////////////////////////////
+// MIDDLEWARE
+////////////////////////////////
+app.use(express.json()); // parse json bodies - this will run before our request accesses the people router
+
+// all requests for endpoints that begin with '/people'
+app.use('/recipes', recipeController)
 
 ///////////////////////////////
 // ROUTES
