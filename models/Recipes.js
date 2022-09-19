@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 ////////////////////////////////
 const RecipeSchema = new mongoose.Schema({
   name: String,
-  title: String,
+  instructions: String,
   image: String,
 },{timestamps: true});
 

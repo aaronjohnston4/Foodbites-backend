@@ -1,4 +1,4 @@
-// ./controllers/people-controller.js
+// ./controllers/recipe-controller.js
 
 const express = require('express')
 const router = express.Router()
@@ -18,8 +18,9 @@ router.get("/", async (req, res) => {
 });
 
 // Recipe Create Route
-router.post("/post", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
+    console.log(req.body)
     // create new person
     res.json(await Recipe.create(req.body));
   } catch (error) {
@@ -40,7 +41,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Recipe Update Route
-router.put("/:id/edit", async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
       res.json(
         await Recipe.findByIdAndUpdate(req.params.id, req.body, {new:true})

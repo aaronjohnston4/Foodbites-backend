@@ -1,4 +1,4 @@
 module.exports = {
-    People: require('./Recipes')
+    Recipe: require('./Recipes')
 	 // module.exports returns an object containing references to each of our imported models 
 }
