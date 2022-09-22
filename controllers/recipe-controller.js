@@ -31,6 +31,7 @@ router.post("/", async (req, res) => {
 
 // Recipe Show Route
 router.get("/:id", async (req, res) => {
+    console.log("does this work well")
     try {
         // send one person
         res.json(await Recipe.findById(req.params.id));
@@ -40,8 +41,9 @@ router.get("/:id", async (req, res) => {
       }
 });
 
+
 // Recipe Update Route
-router.put("/:id", async (req, res) => {
+router.put("/:id/edit", async (req, res) => {
     try {
       res.json(
         await Recipe.findByIdAndUpdate(req.params.id, req.body, {new:true})
